@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import { useEffect, useState } from 'react';
 import api from './api';
+import MovieCard from './components/MovieCard';
 
 interface Movie {
   id: number;
@@ -34,12 +35,11 @@ export default function App() {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ padding: 16 }}
         renderItem={({ item }) => (
-          <View className="mb-4 p-4 bg-white rounded-lg shadow">
-            <Text className="text-xl font-bold mb-4">🎬 รายการหนัง</Text>
-            <Text className="text-xl font-bold">{item.title}</Text>
-            <Text className="text-gray-600">{item.description}</Text>
-            <Text className="text-blue-500 font-semibold">฿ {item.price}</Text>
-          </View>
+          <MovieCard
+            title={item.title}
+            description={item.description}
+            price={item.price}
+          />
         )}
       />
     </SafeAreaView>
