@@ -8,6 +8,7 @@ interface Movie {
   title: string;
   description: string;
   price: number;
+  imageUrl: string;
 }
 
 export default function App() {
@@ -83,6 +84,7 @@ export default function App() {
             title={item.title}
             description={item.description}
             price={item.price}
+            imageUrl={item.imageUrl}
           />
         )}
         onEndReached={loadMoreMovies} // โหลดหน้าถัดไปเมื่อเลื่อนถึงล่าง
