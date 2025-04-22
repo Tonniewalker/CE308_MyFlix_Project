@@ -28,3 +28,18 @@ export const remove = (id: number) => {
     where: { id },  // WHERE id = ...
   });
 };
+
+// ฟังก์ชันสำหรับดึงรายการหนังแบบแบ่งหน้า (Pagination)
+export const getMovies = async (page: number, limit: number) => {
+  // คำนวณจำนวนรายการที่ต้องข้าม เช่น หน้า 2 ต้องข้าม 10 รายการแรก (ถ้า limit = 10)
+  const skip = (page - 1) * limit;
+
+  // ใช้ Prisma ดึงรายการหนังจากฐานข้อมูลแบบแบ่งหน้า
+  return prisma.movie.findMany({
+    skip,          // ข้ามกี่รายการ
+    take: limit,   // ดึงมากี่รายการ
+    orderBy: {
+      id: 'asc',   // เรียงลำดับหนังตาม id จากน้อยไปมาก
+    },
+  });
+};
