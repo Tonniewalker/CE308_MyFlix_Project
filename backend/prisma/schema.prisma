@@ -14,5 +14,5 @@ model Movie {
   price       Float
   isAvailable Boolean  @default(true)
   createdAt   DateTime @default(now())
-  imageUrl    String
+  imageUrl    String?
 }
